@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматизация процессов университета | проект 2гис</title>
+    <style>
+        :root {
+            --primary: #2a4365;
+            --secondary: #4299e1;
+            --light: #ebf8ff;
+            --dark: #1a365d;
+            --gray: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 0;
+            background-color: var(--light);
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(235, 248, 255, 0.9);
+            border-radius: 8px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-description {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .project-description img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .team-member h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-member p {
+            color: #666;
+        }
+        
+        .journal {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .journal-entry {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .journal-entry h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .journal-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .resource-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-card a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+            justify-items: center;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+        
+        @media (max-width: 768px) {
+            .project-description {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">2ГИС проект</div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#team">Участники</a></li>
+                <li><a href="#journal">Журнал</a></li>
+                <li><a href="#resources">Ресурсы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Автоматизация внутренних бизнес-процессов университета</h1>
+                <p>Проект по созданию точной 3D-модели корпусов Московского Политеха для интеграции в приложение 2ГИС, чтобы помочь студентам легко находить аудитории и ориентироваться в университете.</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+            <img class="hero-image" src="https://avatars.mds.yandex.net/get-altay/1880508/2a0000016dce3bce1824b025860ee1cd804e/XXL" alt="Корпус университета">
+
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>О проекте</h2>
+            <div class="project-description">
+                <div>
+                    <p>Наш проект направлен на улучшение навигации по корпусам Московского Политеха с помощью создания точных 3D-моделей аудиторий и коридоров для интеграции в приложение 2ГИС.</p>
+                    <p>Мы самостоятельно измеряем стены коридоров и аудиторий, переносим эти измерения на бумагу, а затем создаём точные 3D-модели наших корпусов. Это позволит студентам:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li>Быстро находить нужные аудитории</li>
+                        <li>Ориентироваться в сложной планировке корпусов</li>
+                        <li>Видеть точное расположение кабинетов и входов</li>
+                        <li>Экономить время при поиске нужных помещений</li>
+                    </ul>
+                    <p>Проект выполняется студентами первого курса в рамках "Проектной деятельности" при поддержке университета и компании 2ГИС.</p>
+                </div>
+                <img src="https://sun9-80.userapi.com/impg/gsMi6Jl3Ub54vE4mlqyt-J50PZM6p5rOEgBzUg/E5LhwbZ4l9M.jpg?size=1430x828&quality=95&sign=4159de62c28c24e4a376c685163b9dea&type=album" alt="Процесс создания 3D модели">
+            </div>
+            
+            <div style="margin-top: 2rem;">
+    <h3>Видео о проекте</h3>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 1rem;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;" 
+                src="https://rutube.ru/video/embed/b27432ef5782c2709bf5d3e6e46c20b7" 
+                frameborder="0" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</div>
+        </section>
+
+        <section id="team">
+            <h2>Участники проекта</h2>
+            <div class="team">
+                <div class="team-member">
+                    <h3>Алина</h3>
+                    <p><strong>Роль:</strong> Лидер проекта</p>
+                    <p><strong>Вклад:</strong> Координация работы команды, распределение задач, контроль сроков выполнения, замер корпусов.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Вероника</h3>
+                    <p><strong>Роль:</strong> Замеры помещений</p>
+                    <p><strong>Вклад:</strong> Проведение точных измерений корпусов, фиксация данных, создание чертежей.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Евгения</h3>
+                    <p><strong>Роль:</strong> 3D-моделирование</p>
+                    <p><strong>Вклад:</strong> Создание точных 3D-моделей на основе замеров, текстурирование, подготовка к интеграции.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Артём</h3>
+                    <p><strong>Роль:</strong> Дизайн и UX</p>
+                    <p><strong>Вклад:</strong> Разработка удобного интерфейса для навигации.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Михаил</h3>
+                    <p><strong>Роль:</strong> Связи с партнёрами</p>
+                    <p><strong>Вклад:</strong> Взаимодействие с представителями 2ГИС и университета, организация встреч.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="journal">
+            <h2>Журнал проекта</h2>
+            <div class="journal">
+                <div class="journal-entry">
+                    <h3>Начало работы над проектом</h3>
+                    <div class="journal-date">5 февраля 2025</div>
+                    <p>Сегодня состоялось первое собрание команды. Мы определили основные цели проекта, распределили роли и составили предварительный план работы. Назначены ответственные за замеры корпусов и создание 3D-моделей.</p>
+                    <div class="gallery">
+                        <img src="https://sun9-6.userapi.com/impg/SVtX_yx_GofgNwZ2KFG1A7NQx64WaxL0-tABzQ/W56hi4EIUDE.jpg?size=2560x1708&quality=95&sign=e6d470b709e8f2ff9ab08cdba68a8240&type=album" alt="Первое собрание команды">
+                    </div>
+                </div>
+                
+                <div class="journal-entry">
+                    <h3>Завершение первого этапа замеров</h3>
+                    <div class="journal-date">10 марта 2025</div>
+                    <p>Постепенно идёт процесс замеров корпусов. Получены точные данные о размерах аудиторий, коридоров и переходов. Начата работа над созданием 3D-модели первого этажа.</p>
+                    <div class="gallery">
+                        <img src="https://sun9-65.userapi.com/impg/Vam5YFvR8Hd7PT7BL7G2ot3QHLZVP6M2ak9hqg/OJIjBBxrOcM.jpg?size=1280x905&quality=95&sign=c4c4ac4db2223e12543e2a7746fad83b&type=album" alt="Чертежи помещений">
+                    </div>
+                </div>
+                
+                <div class="journal-entry">
+                    <h3>Первые результаты моделирования</h3>
+                    <div class="journal-date">15 марта 2025</div>
+                    <p>Активо идет работа над 3D-моделью главного корпуса. Модель включает точное расположение аудиторий, лестниц и входов.</p>
+                    <div class="gallery">
+                        <img src="https://sun9-52.userapi.com/impg/HNXqqjsPhbshMAngHuCl8cXt8jYiHnsDcfTvjw/JNp7gyeoadE.jpg?size=802x505&quality=95&sign=bd516ca486e0a8202687053d396f3588&type=album" alt="3D модель корпуса">
+                    </div>
+                </div>
+
+                <div class="journal-entry">
+                    <h3>Встреча с представителями 2гис</h3>
+                    <div class="journal-date">7 апреля 2025</div>
+                    <p>Руководитель отдела по продвижению HR-бренда 2ГИС, эксперт по коммуникациям — Лидия Маркова рассказала на мастер-классе все самые важные инсайты.</p>
+                    <div class="gallery">
+                        <img src="https://sun9-16.userapi.com/impg/anbHu6wQKUbPcR9afbsOi---PyaNteCFIstWJA/XSxzC6Roc-k.jpg?size=1280x1280&quality=95&sign=525a9a986e78e459280e6a5fcd78c6da&type=album" alt="Мастер-класс">
+                    </div>
+                </div>
+
+                <div class="journal-entry">
+                    <h3>Завершение всех этапов работы. Запись видеоролика по итогам проекта</h3>
+                    <div class="journal-date">1 мая 2025</div>
+                    <p>Команда демонстрирует процесс и результат работы.</p>
+                    <div class="gallery">
+                        <img src="https://sun9-33.userapi.com/impg/6D-msCtKOMPL_9msLDpPxel8XS214iAzGN0grg/llNP8E-vIVw.jpg?size=907x497&quality=95&sign=e7c2ac6106121d030468e4960a540a55&type=album" alt="Итог">
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2>Ресурсы</h2>
+            <div class="resources">
+                <div class="resource-card">
+                    <h3>Официальный сайт 2ГИС</h3>
+                    <p>Сайт нашего партнёра по проекту с информацией о возможностях платформы.</p>
+                    <a href="https://2gis.ru" target="_blank">Перейти на сайт →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Московский Политех</h3>
+                    <p>Официальный сайт университета с информацией о корпусах и инфраструктуре.</p>
+                    <a href="https://mospolytech.ru" target="_blank">Перейти на сайт →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Blender - 3D моделирование</h3>
+                    <p>Бесплатное ПО для создания 3D-моделей, которое мы используем в проекте.</p>
+                    <a href="https://www.blender.org" target="_blank">Перейти на сайт →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Руководство по архитектурным замерам</h3>
+                    <p>Полезная статья о методах точных измерений помещений.</p>
+                    <a href="#" target="_blank">Читать статью →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Проект "Автоматизация внутренних бизнес-процессов университета. 2ГИС"</p>
+        <p>Московский Политех | I курс | Проектная деятельность</p>
+    </footer>
+</body>
+</html>
